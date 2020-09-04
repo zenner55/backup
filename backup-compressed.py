@@ -32,7 +32,8 @@ def dir_walk(dir_to_walk):
                     else:
                         shutil.copy2(path, file_full_path); insert_file_path(backup_id, hash, path, stat_result.st_size, stat_result.st_ctime_ns, stat_result.st_mtime_ns)
                 else:
-                    os.link((repository + "/" + current_path[1] + path), file_full_path); cursor.execute("""UPDATE hash_table SET backup_id = ? WHERE file_id = ?""", (backup_id, current_path[0])); connection.commit(); break      
+                    os.link((repository + "/" + current_path[1] + path), file_full_path); cursor.execute("""UPDATE hash_table SET backup_id = ? WHERE file_id = ?""", (backup_id, current_path[0])); connection.commit() 
+                break      
             else:
                 hash = get_hash(path)
                 for hash_in_db in cursor.execute("""SELECT backup_id, path FROM hash_table WHERE hash = ?""", (hash,)):
