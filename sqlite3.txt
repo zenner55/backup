@@ -1,0 +1,18 @@
+CREATE TABLE hash_table (
+file_id INTEGER PRIMARY KEY,
+backup_id text NOT NULL,
+hash text NOT NULL,
+path text NOT NULL,
+size INTEGER NOT NULL,
+ctime INTEGER NOT NULL,
+mtime INTEGER NOT NULL
+);
+CREATE INDEX ht_index
+on hash_table (path, hash);
+
+
+CREATE TABLE current_info_table (
+status text NOT NULL,
+backup_id text NOT NULL
+);
+
